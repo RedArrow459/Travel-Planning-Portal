@@ -1,0 +1,148 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Travel Planning Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        nav {
+            text-align: center;
+            margin: 10px 0;
+        }
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #4CAF50;
+            font-weight: bold;
+        }
+        main {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        section {
+            margin-bottom: 40px;
+        }
+        footer {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+        /* Simple styling for forms */
+        form input, form textarea, form button {
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        form button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Travel Planner</h1>
+        <p>Your guide to the perfect trip!</p>
+    </header>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#search">Search Destination</a>
+        <a href="#itinerary">Itinerary Planner</a>
+        <a href="#contact">Contact Us</a>
+    </nav>
+
+    <main>
+        <!-- Home Section -->
+        <section id="home">
+            <h2>Welcome to the Travel Planner</h2>
+            <p>Plan your trips, explore new destinations, and manage your itinerary all in one place.</p>
+        </section>
+
+        <!-- Search Destination Section -->
+        <section id="search">
+            <h2>Search Destinations</h2>
+            <form>
+                <input type="text" id="destination" placeholder="Enter destination..." required>
+                <button type="button" onclick="searchDestination()">Search</button>
+            </form>
+            <div id="searchResult"></div>
+        </section>
+
+        <!-- Google Maps Section -->
+        <section id="map">
+            <h2>Explore on the Map</h2>
+            <p>Here is a sample destination:</p>
+            <div id="map-container" style="height: 400px;"></div>
+        </section>
+
+        <!-- Itinerary Planner Section -->
+        <section id="itinerary">
+            <h2>Plan Your Itinerary</h2>
+            <form>
+                <input type="text" placeholder="Activity" required>
+                <input type="date" required>
+                <textarea placeholder="Notes" required></textarea>
+                <button type="submit">Add to Itinerary</button>
+            </form>
+        </section>
+
+        <!-- Contact Form Section -->
+        <section id="contact">
+            <h2>Contact Us</h2>
+            <form>
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <textarea placeholder="Your Message" required></textarea>
+                <button type="submit">Submit</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>Travel Planner &copy; 2024</p>
+    </footer>
+
+    <!-- Google Maps JavaScript API -->
+    <script>
+        function initMap() {
+            var map = new google.maps.Map(document.getElementById('map-container'), {
+                center: {lat: 37.7749, lng: -122.4194}, // San Francisco, CA as sample location
+                zoom: 8
+            });
+        }
+
+        // Simulated search function
+        function searchDestination() {
+            const destination = document.getElementById('destination').value;
+            document.getElementById('searchResult').innerText = "You searched for: " + destination;
+        }
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script>
+</body>
+</html>
