@@ -46,7 +46,6 @@
             text-align: center;
             padding: 10px 0;
         }
-        /* Simple styling for forms */
         form input, form textarea, form button {
             display: block;
             width: 100%;
@@ -61,7 +60,15 @@
             border: none;
             cursor: pointer;
         }
+        /* Map container styling */
+        #map-container {
+            height: 400px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
     </style>
+    <!-- Include Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
 </head>
 <body>
 
@@ -94,11 +101,11 @@
             <div id="searchResult"></div>
         </section>
 
-        <!-- Google Maps Section -->
+        <!-- Leaflet Map Section -->
         <section id="map">
             <h2>Explore on the Map</h2>
             <p>Here is a sample destination:</p>
-            <div id="map-container" style="height: 400px;"></div>
+            <div id="map-container"></div>
         </section>
 
         <!-- Itinerary Planner Section -->
@@ -128,14 +135,22 @@
         <p>Travel Planner &copy; 2024</p>
     </footer>
 
-    <!-- Google Maps JavaScript API -->
+    <!-- Include Leaflet JavaScript -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
+    <!-- Initialize the map using Leaflet -->
     <script>
-        function initMap() {
-            var map = new google.maps.Map(document.getElementById('map-container'), {
-                center: {lat: 37.7749, lng: -122.4194}, // San Francisco, CA as sample location
-                zoom: 8
-            });
-        }
+        var map = L.map('map-container').setView([37.7749, -122.4194], 10); // San Francisco coordinates
+
+        // Load OpenStreetMap tiles
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        // Add a marker at the center of the map
+        var marker = L.marker([37.7749, -122.4194]).addTo(map)
+            .bindPopup('Welcome to San Francisco!')
+            .openPopup();
 
         // Simulated search function
         function searchDestination() {
@@ -143,6 +158,6 @@
             document.getElementById('searchResult').innerText = "You searched for: " + destination;
         }
     </script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script>
+
 </body>
 </html>
